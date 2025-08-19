@@ -54,8 +54,23 @@ public class Main {
 
         // Mostrar estado final del pedido
         System.out.println("\n--- Estado Final del Pedido ---");
-        System.out.println("Pago procesado: " + (pedido.isPagoProcesado() ? "✓ Sí" : "✗ No"));
-        System.out.println("Notificación enviada: " + (pedido.isNotificacionEnviada() ? "✓ Sí" : "✗ No"));
+        System.out.println("Pedido confirmado: " + (pedido.isConfirmado() ? "✓ Sí" : "✗ No"));
+        
+        if (pedido.getPago() != null) {
+            System.out.println("\n--- Detalles del Pago ---");
+            System.out.println(pedido.getPago().obtenerResumen());
+        }
+        
+        if (pedido.getEnvio() != null) {
+            System.out.println("\n--- Detalles del Envío ---");
+            System.out.println(pedido.getEnvio().obtenerResumen());
+        }
+        
+        if (pedido.getNotificacion() != null) {
+            System.out.println("\n--- Detalles de la Notificación ---");
+            System.out.println("Número celular: " + pedido.getNotificacion().getNumeroCelular());
+            System.out.println("Mensaje: " + pedido.getNotificacion().getMensaje());
+        }
 
         System.out.println("\n=== Fin del Sistema ===");
     }

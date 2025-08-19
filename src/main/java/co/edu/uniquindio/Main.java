@@ -29,15 +29,33 @@ public class Main {
             System.out.println(item);
         }
 
-        System.out.println("\n--- Procesando Pago ---");
-        boolean pagoExitoso = pedido.procesarPago();
+        // Datos de tarjeta de crédito
+        String numeroTarjeta = "1234567890123456";
+        String titular = "Juan Pérez";
+        String fechaVencimiento = "12/25";
+        String cvv = "123";
 
-        if (pagoExitoso) {
-            System.out.println("✅ Pago procesado exitosamente");
-            System.out.println("📦 Pedido enviado por: " + pedido.getMetodoEnvio());
+        System.out.println("\n--- Información de Pago ---");
+        System.out.println("Tarjeta: " + numeroTarjeta.substring(0, 4) + "****" + numeroTarjeta.substring(12));
+        System.out.println("Titular: " + titular);
+
+        // Ejecutar el proceso central completo
+        System.out.println("\n--- INICIANDO PROCESO DE CONFIRMACIÓN ---");
+        boolean confirmacionExitosa = pedido.confirmarPedido(numeroTarjeta, titular, fechaVencimiento, cvv);
+
+        if (confirmacionExitosa) {
+            System.out.println("\n🎉 ¡Pedido confirmado exitosamente!");
+            System.out.println("📱 Notificación SMS enviada al cliente");
+            System.out.println("📦 Pedido en preparación para envío " + pedido.getMetodoEnvio());
         } else {
-            System.out.println("❌ Error en el procesamiento del pago");
+            System.out.println("\n❌ Error en la confirmación del pedido");
+            System.out.println("El proceso se detuvo debido a un error");
         }
+
+        // Mostrar estado final del pedido
+        System.out.println("\n--- Estado Final del Pedido ---");
+        System.out.println("Pago procesado: " + (pedido.isPagoProcesado() ? "✓ Sí" : "✗ No"));
+        System.out.println("Notificación enviada: " + (pedido.isNotificacionEnviada() ? "✓ Sí" : "✗ No"));
 
         System.out.println("\n=== Fin del Sistema ===");
     }

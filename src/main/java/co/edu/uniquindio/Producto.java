@@ -1,24 +1,24 @@
 package co.edu.uniquindio;
 
 public class Producto {
-    private String id;
+    private String sku;
     private String nombre;
     private float precioUnitario;
 
     // Constructor
-    public Producto(String id, String nombre, float precioUnitario) {
-        this.id = id;
+    public Producto(String sku, String nombre, float precioUnitario) {
+        this.sku = sku;
         this.nombre = nombre;
         this.precioUnitario = precioUnitario;
     }
 
     // Getters and Setters
-    public String getId() {
-        return id;
+    public String getSku() {
+        return sku;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
     public String getNombre() {
@@ -40,7 +40,7 @@ public class Producto {
     @Override
     public String toString() {
         return "Producto{" +
-                "id='" + id + '\'' +
+                "sku='" + sku + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", precioUnitario=" + precioUnitario +
                 '}';
